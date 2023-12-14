@@ -137,6 +137,7 @@ After one-hot encoding the 2 nominal categorical features, the baseline RandomFo
 | ...                             | ...                     | ...              |
 
 
+
 |                                 | Test Predicted Duration | Actual Duration |
 |---------------------------------|-------------------------|------------------|
 | 1478                            | 2986.133051             | 77.0             |
@@ -236,6 +237,8 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 914                            | 4025.372307                       | 5781.134054                     | 1044.0           |
 | 1505                           | 1750.409304                       | 499.433308                      | 103.0            |
 | ...                            | ...                               | ...                             | ...              |
+
+
 
 |                                 | Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
 |---------------------------------|-----------------------------------|-------------------------------|------------------|
