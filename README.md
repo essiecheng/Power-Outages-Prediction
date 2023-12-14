@@ -226,7 +226,7 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 **Train RMSE**: 3593.13972810358
 **Test RMSE**: 7954.385910146231
 
-| Baseline Train Predicted Duration | Final Train Predicted Duration | Actual Duration |
+| | Baseline Train Predicted Duration | Final Train Predicted Duration | Actual Duration |
 |-----------------------------------|---------------------------------|------------------|
 | 1484                              | 1696.929466                     | 1064.502460      | 1895.0           |
 | 1279                              | 1696.929466                     | 3291.529008      | 4605.0           |
@@ -235,7 +235,7 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 1505                              | 1750.409304                     | 499.433308       | 103.0            |
 | ...                               | ...                             | ...              | ...              |
 
-| Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
+|                                  | Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
 |----------------------------------|-------------------------------|------------------|
 | 1478                             | 2986.133051                   | 44.929826        | 77.0             |
 | 371                              | 2807.566034                   | 1187.522924      | 360.0            |
@@ -259,6 +259,6 @@ To assess whether the model is fair, the test dataset is categorized into two gr
 
 P-value: 0.931
 
-<iframe src="rmse_normal_vs_extreme.htmll" width=800 height=600 frameBorder=0></iframe>
+<iframe src="rmse_normal_vs_extreme.html" width=800 height=600 frameBorder=0></iframe>
 
 The resulting p-value of 0.931 leads us to fail to reject the null hypothesis and conclude that the model is fair. Of course, since statistical tests were performed and not randomized controlled trials, the results of the test aren't proven to be 100% true.
