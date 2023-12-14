@@ -23,7 +23,7 @@ The same data cleaning performed in previous [EDA](https://essiecheng.github.io/
     - All columns are stored as strings, but it would make more sense for numerical information to be stored as floats.
     - It would be preferable if the power outages start date and time were merged into one pd.Timestamp column, and power outages restoration date and time were merged into one pd.Timestamp column.
 - Fill in missing values
-  - The response variable 'OUTAGE.DURATION' has 58 NaN values, so median imputation will be performed because its distribution is skewed.
+  - The response variable 'OUTAGE.DURATION' has 58 NaN values, so median imputation will be performed because its distribution is skewed (as discovered in the previous EDA).
 - Keeping relevant columns
     - The DataFrame now has 57 columns. Since we're concerned with predicting the severity of a power outage from other power outage features, we only need columns in the dataset that include information related outage severity and other potentially contextual variables. We also only want information we would know at the time of prediction, so no columns that contain information that could only be known after a power outage will be included.
     - The chosen relevant columns are their [descriptions](https://www.sciencedirect.com/science/article/pii/S2352340918307182) are::
@@ -72,15 +72,15 @@ In previous exploration of the dataset, it was found that certain regions have l
 
 These columns provide relevant locational information and are accessible at the time of prediction.
 ### Feature Engineering
-Since 'CLIMATE.REGION' and 'NERC.REGION' are both nominal categorical variables, they will be converted into numerical representations so that are suitable to predict 'OUTAGE.DURATION'.
+Since 'CLIMATE.REGION' and 'NERC.REGION' are both nominal categorical variables, they will be converted into numerical representations so that they are suitable to predict 'OUTAGE.DURATION'.
 - **'CLIMATE.REGION'** 🗺️: One-Hot Encoding
 
-One-hot encoding will transform the single categorical feature into multiple numerical features, creating binary columns for each unique category that indicate the presence or absence of that category in the data. The potential categories in 'CLIMATE.REGION' are: 'East North Central', 'Central', 'South', 'Southeast', 'Northwest', Southwest', 'Northeast', 'West North Central', and 'West'.
-explanation 
+One-hot encoding will transform the single categorical feature into multiple numerical features, creating binary columns for each unique category that indicate the presence or absence of that category in the data. The potential categories in 'CLIMATE.REGION' are: 'East North Central', 'Central', 'South', 'Southeast', 'Northwest', Southwest', 'Northeast', 'West North Central', and 'West'. 
 
 - **'NERC.REGION'** 📍: One-Hot Encoding
   
-The potential categories in 'NERC.REGION' are: 'MRO', 'SERC', 'RFC', 'ECAR', 'TRE', 'WECC', 'SPP', 'NPCC', 'FRCC', 'FRCC, SERC'
+The potential categories in 'NERC.REGION' are: 'MRO', 'SERC', 'RFC', 'ECAR', 'TRE', 'WECC', 'SPP', 'NPCC', 'FRCC', 'FRCC, SERC'.
+
 After one-hot encoding the 2 nominal categorical features, the baseline RandomForestRegressor model will use 19 discrete numerical features:
 > CLIMATE.REGION (East North Central)🗺️
 
@@ -188,10 +188,10 @@ The distribution of power infrastructure earnings across different areas could g
     
     > This is a discrete numerical variable
 
-This feature could provide relevant information about electricity consumption.
+This feature could provide relevant information about electricity consumption; more usage could cause greater strain on power grids and thus longer outage durations.
 
 ### Feature Engineering
-2 categorical features were added, so they will undergo transformations into numerical features. 2 numerical features were added, but with different units of measurements; to attain consistency and dull the dominace of features with larger values, they will undergo transformations to handle the different scales and magnitudes.
+2 categorical features were added, so they will undergo transformations into numerical features. 2 numerical features were added, but with different units of measurements; to attain consistency and dull the dominance of features with larger values, they will undergo transformations to handle the different scales and magnitudes.
 - **'CLIMATE.REGION'🗺️**: One-Hot Encoding
 
 same as baseline model
@@ -206,11 +206,9 @@ The potential one-hot encoded categories in 'CAUSE.CATEGORY' are: 'severe weathe
 
 - **'CLIMATE.CATEGORY'🌤️**: Ordinal Encoding
 
-The categories of 'CLIMATE.CATEGORY' are 'normal', 'cold', 'warm; they will be assigned corresponding integers of natural ordering
+The categories of 'CLIMATE.CATEGORY' are 'normal', 'cold', 'warm'. They will be assigned corresponding integers of natural ordering
 
 - **'PI.UTIL.OFUSA'💲**: Scaled using StandardScalar
-
-Scaling is applied for consistency and to prevent dominance by features with larger values
 
 - **'TOTAL.CUSTOMERS'👥**: Scaled using StandardScalar
 
@@ -247,9 +245,12 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 1330                            | 2675.564788                       | 1323.058217                  | 1337.0           |
 | ...                             | ...                               | ...                           | ...              |
 
+|              | Train (Baseline) | Test (Baseline) | Train (Final) | Test (Final) |
+|--------------|------------------|-----------------|---------------|--------------|
+| RMSE         | 4916.138668      | 8312.67577      | 3593.139728   | 7954.38591   |
 
-The final model is considered an improvement, as both the training and testing RMSE are lower (training RMSE lowered by ~1300 minutes and testing RMSE lowered by ~400 minutes). However, the testing RMSE is still significantly higher than the training RMSE, indicating that the model is overfit to the training data (although the overfit is less extreme than in the baseline model). Overall, it appears that incorporating additional features (which include more information and help fit the model better) and optimizing hyperparameters enhanced the final model performance (although there are still limitations to the model's predictive ability).
 
+The final model is considered an improvement, as both the training and testing RMSE are lower (training RMSE lowered by ~1300 minutes and testing RMSE lowered by ~400 minutes). However, the testing RMSE is still significantly higher than the training RMSE, indicating that the model is overfit to the training data (although the overfit is less extreme than in the baseline model). Overall, it appears that incorporating additional features (which include more information and help fit the model better) and optimizing hyperparameters enhanced the final model performance.
 ## Fairness Analysis
 To assess whether the model is fair, the test dataset is categorized into two groups: normal climate ('CLIMATE.CATEGORY' == 'normal') vs extreme climate ('CLIMATE.CATEGORY == 'warm' or 'cold'). To answer the question "Does my model perform worse for normal climates than it does for extreme climates?", a permutation test will be conducted. 
 
