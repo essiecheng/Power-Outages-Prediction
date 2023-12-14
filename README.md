@@ -136,6 +136,7 @@ After one-hot encoding the 2 nominal categorical features, the baseline RandomFo
 | 1505                            | 1750.409304              | 103.0            |
 | ...                             | ...                     | ...              |
 
+
 |                                 | Test Predicted Duration | Actual Duration |
 |---------------------------------|-------------------------|------------------|
 | 1478                            | 2986.133051             | 77.0             |
@@ -255,7 +256,7 @@ To assess whether the model is fair, the test dataset is categorized into two gr
 
 **Alternative Hypothesis**: The model is unfair and its RMSE for normal climates is higher than its RMSE for extreme climates.
 
-**Test Statistic**: absolute difference in RMSE between the 'normal' and combined 'cold'/'hot' climate categories
+**Test Statistic**: Absolute difference in RMSE between the 'normal' and combined 'cold'/'hot' climate categories
 
 **Significance level**: 0.05
 
