@@ -14,9 +14,8 @@ The model will try to predict 'OUTAGE.DURATION', a continuous numerical variable
 Valid evaluation metrics for regression models include RMSE and R^2. The RMSE assesses how well a regression model predicts the value of the response variable in absolute terms while R^2 does so in percentage terms. Because we want to evaluate the model's ability to generalize to unseen data, RMSE is chosen over R^2 as the evaluation metric as it gives a better assessment in how well the model will perform for unseen observations. The lower the RMSE, the better the predictions.
 
 ### Data Cleaning: 
-The same data cleaning performed in previous [EDA]https://essiecheng.github.io/Power-Outage-Analysis/ will be performed here: 
+The same data cleaning performed in previous [EDA](https://essiecheng.github.io/Power-Outage-Analysis/) will be performed here: 
 - Fix Formatting
-    - It appears that due to formatting issues: 
     - the first 4 rows are all NaN values 
     - the correct column names appear in row 5
     - These rows will be dropped and colum names will be reassigned.
@@ -37,8 +36,6 @@ The same data cleaning performed in previous [EDA]https://essiecheng.github.io/P
       - CLIMATE.CATEGORY: This represents the climate episodes corresponding to the years. The categories—“Warm”, “Cold” or “Normal” episodes of the climate are based on a threshold of ± 0.5 °C for the Oceanic Niño Index (ONI)
       - OUTAGE.START.DATE: This variable indicates the day of the year when the outage event started (as reported by the corresponding Utility in the region)
       - OUTAGE.START.TIME: This variable indicates the time of the day when the outage event started (as reported by the corresponding Utility in the region)
-      - OUTAGE.RESTORATION.DATE: This variable indicates the day of the year when power was restored to all the customers (as reported by the corresponding Utility in the region)
-      - OUTAGE.RESTORATION.TIME: This variable indicates the time of the day when power was restored to all the customers (as reported by the corresponding Utility in the region)
       - CAUSE.CATEGORY: Categories of all the events causing the major power outages
       - CAUSE.CATEGORY.DETAIL: Detailed description of the event categories causing the major power outages
       - OUTAGE.DURATION: Duration of outage events (in minutes)
@@ -47,13 +44,14 @@ The same data cleaning performed in previous [EDA]https://essiecheng.github.io/P
 
 The first 5 rows of the resulting DataFrame:
 
-| U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | OUTAGE.START         | OUTAGE.RESTORATION    | OUTAGE.DURATION | YEAR | MONTH | CAUSE.CATEGORY | CAUSE.CATEGORY.DETAIL | CLIMATE.CATEGORY | PI.UTIL.OFUSA | TOTAL.CUSTOMERS |
-|------------|-------------|-------------|-----------------|----------------------|-----------------------|------------------|------|-------|----------------|-----------------------|-------------------|---------------|------------------|
-| Minnesota  | MN          | MRO         | East North Central | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | 3060.0           | 2011 | 7.0   | severe weather | NaN                   | normal            | 2.2           | 2595696          |
-| Minnesota  | MN          | MRO         | East North Central | 2014-05-11 18:38:00 | 2014-05-11 18:39:00 | 1.0              | 2014 | 5.0   | intentional attack | vandalism           | normal            | 2.2           | 2640737          |
-| Minnesota  | MN          | MRO         | East North Central | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 | 3000.0           | 2010 | 10.0  | severe weather | heavy wind            | cold              | 2.1           | 2586905          |
-| Minnesota  | MN          | MRO         | East North Central | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 | 2550.0           | 2012 | 6.0   | severe weather | thunderstorm         | normal            | 2.2           | 2606813          |
-| Minnesota  | MN          | MRO         | East North Central | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 | 1740.0           | 2015 | 7.0   | severe weather | NaN                   | warm              | 2.2           | 2673531          |
+| U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION     | OUTAGE.START         | OUTAGE.DURATION | YEAR | MONTH | CAUSE.CATEGORY    | CAUSE.CATEGORY.DETAIL | CLIMATE.CATEGORY | PI.UTIL.OFUSA | TOTAL.CUSTOMERS |
+|------------|-------------|-------------|--------------------|----------------------|------------------|------|-------|-------------------|-----------------------|-------------------|---------------|------------------|
+| Minnesota  | MN          | MRO         | East North Central | 2011-07-01 17:00:00 | 3060.0           | 2011 | 7.0   | severe weather    | NaN                   | normal            | 2.2           | 2595696          |
+| Minnesota  | MN          | MRO         | East North Central | 2014-05-11 18:38:00 | 1.0              | 2014 | 5.0   | intentional attack | vandalism             | normal            | 2.2           | 2640737          |
+| Minnesota  | MN          | MRO         | East North Central | 2010-10-26 20:00:00 | 3000.0           | 2010 | 10.0  | severe weather    | heavy wind            | cold              | 2.1           | 2586905          |
+| Minnesota  | MN          | MRO         | East North Central | 2012-06-19 04:30:00 | 2550.0           | 2012 | 6.0   | severe weather    | thunderstorm          | normal            | 2.2           | 2606813          |
+| Minnesota  | MN          | MRO         | East North Central | 2015-07-18 02:00:00 | 1740.0           | 2015 | 7.0   | severe weather    | NaN                   | warm              | 2.2           | 2673531          |
+
 
 Now that the data is cleaned, a baseline model can be built.
 
