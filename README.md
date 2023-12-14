@@ -1,5 +1,8 @@
 # Power-Outages-Prediction
 This is a project for DSC80 at UCSD
+
+This [dataset](https://engineering.purdue.edu/LASCI/research-data/outages/outage.xlsx) created by the Laboratory for Advancing Sustainable Critical Infrastructure at Purdue University contains information about power outage data in the U.S. that occurred from January 2000 to July 2016.
+
 ## Framing the Problem
 #### Prediction problem: Predict the severity of a major power outage in terms of its duration
 This is a regression problem to predict the outage duration of a power outages.
@@ -7,11 +10,11 @@ This is a regression problem to predict the outage duration of a power outages.
 #### Response variable: 'OUTAGE.DURATION'⏱️
 The model will try to predict 'OUTAGE.DURATION', a continuous numerical variable that describes how long a power outage lasted (in minutes). This is chosen as the reponse variable because it directly reflects the outage impact's extent as outages that last longer are more "severe".
 
-#### Evaluation Metric: RMSE
+### Evaluation Metric: RMSE
 Valid evaluation metrics for regression models include RMSE and R^2. The RMSE assesses how well a regression model predicts the value of the response variable in absolute terms while R^2 does so in percentage terms. Because we want to evaluate the model's ability to generalize to unseen data, RMSE is chosen over R^2 as the evaluation metric as it gives a better assessment in how well the model will perform for unseen observations. The lower the RMSE, the better the predictions.
 
-#### Data Cleaning: 
-The same data cleaning performed in project 3 will be performed here (and thus the following data cleaning code is from project 3)
+### Data Cleaning: 
+The same data cleaning performed in previous [EDA]https://essiecheng.github.io/Power-Outage-Analysis/ will be performed here: 
 - Fix Formatting
     - It appears that due to formatting issues: 
     - the first 4 rows are all NaN values 
@@ -24,7 +27,7 @@ The same data cleaning performed in project 3 will be performed here (and thus t
   - The response variable 'OUTAGE.DURATION' has 58 NaN values, so median imputation will be performed because its distribution is skewed.
 - Keeping relevant columns
     - The DataFrame now has 57 columns. Since we're concerned with predicting the severity of a power outage from other power outage features, we only need columns in the dataset that include information related outage severity and other potentially contextual variables. We also only want information we would know at the time of prediction, so no columns that contain information that could only be known after a power outage will be included.
-    - The chosen relevant columns are:
+    - The chosen relevant columns are their [descriptions](https://www.sciencedirect.com/science/article/pii/S2352340918307182) are::
       - YEAR: Indicates the year when the outage event occurred
       - MONTH: Indicates the month when the outage event occurred
       - U.S._STATE: Represents all the states in the continental U.S.
@@ -43,6 +46,7 @@ The same data cleaning performed in project 3 will be performed here (and thus t
       - TOTAL.CUSTOMERS: Annual number of total customers served in the U.S. state
 
 The first 5 rows of the resulting DataFrame:
+
 | U.S._STATE | POSTAL.CODE | NERC.REGION | CLIMATE.REGION | OUTAGE.START         | OUTAGE.RESTORATION    | OUTAGE.DURATION | YEAR | MONTH | CAUSE.CATEGORY | CAUSE.CATEGORY.DETAIL | CLIMATE.CATEGORY | PI.UTIL.OFUSA | TOTAL.CUSTOMERS |
 |------------|-------------|-------------|-----------------|----------------------|-----------------------|------------------|------|-------|----------------|-----------------------|-------------------|---------------|------------------|
 | Minnesota  | MN          | MRO         | East North Central | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 | 3060.0           | 2011 | 7.0   | severe weather | NaN                   | normal            | 2.2           | 2595696          |
@@ -54,9 +58,9 @@ The first 5 rows of the resulting DataFrame:
 Now that the data is cleaned, a baseline model can be built.
 
 ## Baseline Model
-#### Model
+### Model
 The model used in this prediciton task will be a **RandomForestRegressor**, a model suitable for regression and relatively robust to overfitting, therefore performing better on unseen data.
-#### Features
+### Features
 In previous exploration of the dataset, it was found that certain regions have longer power outages. Thus, it seems that locational factors could be related to outage duration. The selected features for the model are:
 - **'CLIMATE.REGION'** 🗺️
   > U.S. Climate regions as specified by National Centers for Environmental Information (nine climatically consistent regions in continental U.S.A.)
@@ -69,7 +73,7 @@ In previous exploration of the dataset, it was found that certain regions have l
   > This is a nominal categorical variable
 
 These columns provide relevant locational information and are accessible at the time of prediction.
-#### Feature Engineering
+### Feature Engineering
 Since 'CLIMATE.REGION' and 'NERC.REGION' are both nominal categorical variables, they will be converted into numerical representations so that are suitable to predict 'OUTAGE.DURATION'.
 - **'CLIMATE.REGION'** 🗺️: One-Hot Encoding
 
