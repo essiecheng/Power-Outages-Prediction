@@ -234,7 +234,7 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 1505                           | 1750.409304                       | 499.433308                      | 103.0            |
 | ...                            | ...                               | ...                             | ...              |
 
-<br> <\br>
+<br />
 
 |                                 | Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
 |---------------------------------|-----------------------------------|-------------------------------|------------------|
@@ -244,6 +244,8 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 1034                            | 4000.567202                       | 1341.313430                  | 182.0            |
 | 1330                            | 2675.564788                       | 1323.058217                  | 1337.0           |
 | ...                             | ...                               | ...                           | ...              |
+
+<br />
 
 |              | Train (Baseline) | Test (Baseline) | Train (Final) | Test (Final) |
 |--------------|------------------|-----------------|---------------|--------------|
