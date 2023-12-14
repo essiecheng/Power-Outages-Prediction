@@ -1,14 +1,14 @@
 # ⚡🔮Power-Outages-Prediction🔮⚡
 This is a project for DSC80 at UCSD
 
-This [dataset](https://engineering.purdue.edu/LASCI/research-data/outages/outage.xlsx) created by the Laboratory for Advancing Sustainable Critical Infrastructure at Purdue University contains information about power outage data in the U.S. that occurred from January 2000 to July 2016.
-
 ## Framing the Problem
+
+Power outages can have significant impacts and disruptions on households, businesses, communities, and critical infrastructure. As such, the ability to forecast the severity of outages becomes a critical aspect of ensuring reliability of electrical grids. Through the development of predictive models, this project aims to provide valuable insights needed to manage power outages and help affected populations. To do so, this [dataset](https://engineering.purdue.edu/LASCI/research-data/outages/outage.xlsx) created by the Laboratory for Advancing Sustainable Critical Infrastructure at Purdue University containing information about power outage data in the U.S. that occurred from January 2000 to July 2016 will be utilized. Previous exploratory data analysis on this dataset can be found [here]https://essiecheng.github.io/Power-Outage-Analysis/. 
 #### Prediction problem: Predict the severity of a major power outage in terms of its duration
 This is a regression problem to predict the outage duration of a power outages.
 
 #### Response variable: 'OUTAGE.DURATION'⏱️
-The model will try to predict 'OUTAGE.DURATION', a continuous numerical variable that describes how long a power outage lasted (in minutes). This is chosen as the reponse variable because it directly reflects the outage impact's extent as outages that last longer are more "severe".
+The model will try to predict 'OUTAGE.DURATION', a continuous numerical variable that describes how long a power outage lasted (in minutes). This is chosen as the reponse variable because the severity of an outage can characterized by the duration as it directly reflects the outage impact's extent. Intuitively, outages that last longer are more "severe". 
 
 #### Evaluation Metric: RMSE
 Valid evaluation metrics for regression models include RMSE and R^2. The RMSE assesses how well a regression model predicts the value of the response variable in absolute terms while R^2 does so in percentage terms. Because we want to evaluate the model's ability to generalize to unseen data, RMSE is chosen over R^2 as the evaluation metric as it gives a better assessment in how well the model will perform for unseen observations. The lower the RMSE, the better the predictions.
@@ -220,14 +220,10 @@ Scaling is applied for consistency and to prevent dominance by features with lar
 
 ### Hyperparameters Searching
 GridSearchCV will be used to obtain better hyperparamters and train more effectively. The optimal hyperparameters found are:
-
-**max_depth**: 22
-
-**max_features**: sqrt
-
-**min_samples_split**: 10
-
-**n_estimators**: 122
+- **max_depth**: 22
+- **max_features**: sqrt
+- **min_samples_split**: 10
+- **n_estimators**: 122
 
 ### Model Performance
 **Train RMSE**: 3593.13972810358
