@@ -127,23 +127,24 @@ After one-hot encoding the 2 nominal categorical features, the baseline RandomFo
 
 ### Model Performance
 
-| Train Predicted Duration | Actual Duration |
-|--------------------------|------------------|
-| 1484                     | 1696.929466     | 1895.0           |
-| 1279                     | 1696.929466     | 4605.0           |
-| 1152                     | 1696.929466     | 249.0            |
-| 914                      | 4025.372307     | 1044.0           |
-| 1505                     | 1750.409304     | 103.0            |
-| ...                      | ...             | ...              |
+|                                 | Train Predicted Duration | Actual Duration |
+|---------------------------------|--------------------------|------------------|
+| 1484                            | 1696.929466              | 1895.0           |
+| 1279                            | 1696.929466              | 4605.0           |
+| 1152                            | 1696.929466              | 249.0            |
+| 914                             | 4025.372307              | 1044.0           |
+| 1505                            | 1750.409304              | 103.0            |
+| ...                             | ...                     | ...              |
 
-| Test Predicted Duration | Actual Duration |
-|-------------------------|------------------|
-| 1478                    | 2986.133051     | 77.0             |
-| 371                     | 2807.566034     | 360.0            |
-| 1157                    | 1696.929466     | 5160.0           |
-| 1034                    | 4000.567202     | 182.0            |
-| 1330                    | 2675.564788     | 1337.0           |
-| ...                     | ...             | ...              | 
+|                                 | Test Predicted Duration | Actual Duration |
+|---------------------------------|-------------------------|------------------|
+| 1478                            | 2986.133051             | 77.0             |
+| 371                             | 2807.566034             | 360.0            |
+| 1157                            | 1696.929466             | 5160.0           |
+| 1034                            | 4000.567202             | 182.0            |
+| 1330                            | 2675.564788             | 1337.0           |
+| ...                             | ...                     | ...              |
+
 
 **Train RMSE**: 4916.138668308378
 **Test RMSE**: 8312.675770084086
@@ -226,23 +227,24 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 **Train RMSE**: 3593.13972810358
 **Test RMSE**: 7954.385910146231
 
-| | Baseline Train Predicted Duration | Final Train Predicted Duration | Actual Duration |
-|-----------------------------------|---------------------------------|------------------|
-| 1484                              | 1696.929466                     | 1064.502460      | 1895.0           |
-| 1279                              | 1696.929466                     | 3291.529008      | 4605.0           |
-| 1152                              | 1696.929466                     | 285.622604       | 249.0            |
-| 914                               | 4025.372307                     | 5781.134054      | 1044.0           |
-| 1505                              | 1750.409304                     | 499.433308       | 103.0            |
-| ...                               | ...                             | ...              | ...              |
+|                                | Baseline Train Predicted Duration | Final Train Predicted Duration | Actual Duration |
+|--------------------------------|-----------------------------------|---------------------------------|------------------|
+| 1484                           | 1696.929466                       | 1064.502460                     | 1895.0           |
+| 1279                           | 1696.929466                       | 3291.529008                     | 4605.0           |
+| 1152                           | 1696.929466                       | 285.622604                      | 249.0            |
+| 914                            | 4025.372307                       | 5781.134054                     | 1044.0           |
+| 1505                           | 1750.409304                       | 499.433308                      | 103.0            |
+| ...                            | ...                               | ...                             | ...              |
 
-|                                  | Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
-|----------------------------------|-------------------------------|------------------|
-| 1478                             | 2986.133051                   | 44.929826        | 77.0             |
-| 371                              | 2807.566034                   | 1187.522924      | 360.0            |
-| 1157                             | 1696.929466                   | 6467.448835      | 5160.0           |
-| 1034                             | 4000.567202                   | 1341.313430      | 182.0            |
-| 1330                             | 2675.564788                   | 1323.058217      | 1337.0           |
-| ...                              | ...                           | ...              | ...              |
+|                                 | Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
+|---------------------------------|-----------------------------------|-------------------------------|------------------|
+| 1478                            | 2986.133051                       | 44.929826                    | 77.0             |
+| 371                             | 2807.566034                       | 1187.522924                  | 360.0            |
+| 1157                            | 1696.929466                       | 6467.448835                  | 5160.0           |
+| 1034                            | 4000.567202                       | 1341.313430                  | 182.0            |
+| 1330                            | 2675.564788                       | 1323.058217                  | 1337.0           |
+| ...                             | ...                               | ...                           | ...              |
+
 
 The final model is considered an improvement, as both the training and testing RMSE are lower (training RMSE lowered by ~1300 minutes and testing RMSE lowered by ~400 minutes). However, the testing RMSE is still significantly higher than the training RMSE, indicating that the model is overfit to the training data (although the overfit is less extreme than in the baseline model). Overall, it appears that incorporating additional features (which include more information and help fit the model better) and optimizing hyperparameters enhanced the final model performance (although there are still limitations to the model's predictive ability).
 
