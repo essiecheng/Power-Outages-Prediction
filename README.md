@@ -220,9 +220,13 @@ Scaling is applied for consistency and to prevent dominance by features with lar
 
 ### Hyperparameters Searching
 GridSearchCV will be used to obtain better hyperparamters and train more effectively. The optimal hyperparameters found are:
+
 **max_depth**: 22
+
 **max_features**: sqrt
+
 **min_samples_split**: 10
+
 **n_estimators**: 122
 
 ### Model Performance
