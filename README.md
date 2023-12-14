@@ -259,4 +259,6 @@ To assess whether the model is fair, the test dataset is categorized into two gr
 
 P-value: 0.931
 
+<iframe src="rmse_normal_vs_extreme.htmll" width=800 height=600 frameBorder=0></iframe>
+
 The resulting p-value of 0.931 leads us to fail to reject the null hypothesis and conclude that the model is fair. Of course, since statistical tests were performed and not randomized controlled trials, the results of the test aren't proven to be 100% true.
