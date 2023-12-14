@@ -133,7 +133,9 @@ After one-hot encoding the 2 nominal categorical features, the baseline RandomFo
 | 914                             | 4025.372307              | 1044.0           |
 | 1505                            | 1750.409304              | 103.0            |
 | ...                             | ...                     | ...              |
+
 <br />
+
 |                                 | Test Predicted Duration | Actual Duration |
 |---------------------------------|-------------------------|------------------|
 | 1478                            | 2986.133051             | 77.0             |
@@ -232,7 +234,9 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 914                            | 4025.372307                       | 5781.134054                     | 1044.0           |
 | 1505                           | 1750.409304                       | 499.433308                      | 103.0            |
 | ...                            | ...                               | ...                             | ...              |
+
 <br />
+
 |                                 | Baseline Test Predicted Duration | Final Test Predicted Duration | Actual Duration |
 |---------------------------------|-----------------------------------|-------------------------------|------------------|
 | 1478                            | 2986.133051                       | 44.929826                    | 77.0             |
@@ -241,7 +245,9 @@ GridSearchCV will be used to obtain better hyperparamters and train more effecti
 | 1034                            | 4000.567202                       | 1341.313430                  | 182.0            |
 | 1330                            | 2675.564788                       | 1323.058217                  | 1337.0           |
 | ...                             | ...                               | ...                           | ...              |
+
 <br />
+
 |              | Train (Baseline) | Test (Baseline) | Train (Final) | Test (Final) |
 |--------------|------------------|-----------------|---------------|--------------|
 | RMSE         | 4916.138668      | 8312.67577      | 3593.139728   | 7954.38591   |
